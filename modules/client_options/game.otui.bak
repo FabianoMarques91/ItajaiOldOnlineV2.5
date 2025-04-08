@@ -1,0 +1,58 @@
+OptionPanel
+  OptionCheckBox
+    id: classicControl
+    !text: tr('Classic control')
+
+    $mobile:
+      visible: false
+
+  OptionCheckBox
+    id: autoChaseOverride
+    !text: tr('Allow auto chase override')
+
+  OptionCheckBox
+    id: displayText
+    !text: tr('Display text messages')
+
+  OptionCheckBox
+    id: wsadWalking
+    !text: tr('Enable WSAD walking')
+    !tooltip: tr('Disable chat and allow walk using WSAD keys')
+    $mobile:
+      visible: false
+
+ Label
+    id: hotkeyDelayLabel
+    margin-top: 10
+    !tooltip: tr('Give you some time to make a turn while walking if you press many keys simultaneously')
+    @onSetup: |
+      local value = modules.client_options.getOption('hotkeyDelay')
+      self:setText(tr('Hotkey delay: %s ms', value))
+
+  OptionScrollbar
+    id: hotkeyDelay
+    margin-top: 3
+    minimum: 5
+    maximum: 50
+
+  OptionCheckBox
+    id: dash
+    !text: tr('Enable fast walking (DASH)')
+    !tooltip: tr('Allows to execute next move without server confirmation of previous one')
+
+  OptionCheckBox
+    id: smartWalk
+    !text: tr('Enable smart walking')
+    !tooltip: tr('Will detect when to use diagonal step based on the\nkeys you are pressing')
+      
+  Panel
+    height: 30
+    margin-top: 10
+
+    Button
+      id: changeLocale
+      !text: tr('Change language')
+      @onClick: modules.client_locales.createWindow()
+      anchors.left: parent.left
+      anchors.top: parent.top
+      width: 150

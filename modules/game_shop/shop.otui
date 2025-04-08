@@ -1,0 +1,192 @@
+ShopCategory < UIWidget
+  height: 36
+  focusable: true
+  background: alpha
+  font: terminus-14px-bold
+  text-offset: 12 3
+  text-align: left
+  color: #ffffff
+
+  $focus:
+    color: green
+    background: #494949
+
+  $hover !focus:
+    color: green
+
+ShopOffer < UIWidget
+  height: 56
+  border: 1 #6b6b6b
+  background: #2a2a2a
+
+  $hover:
+    border: 1 #6b6b6b
+    background: #494949
+
+  $focus:
+    border: 1 #eeeeee
+    background: #494949
+
+  Label
+    id: title
+    anchors.bottom: next.top
+    anchors.horizontalCenter: parent.horizontalCenter
+    text-auto-resize: true
+    margin-bottom: 10
+    color: white
+    font: terminus-10px
+
+  Label
+    id: points
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    text-auto-resize: true
+    text-align: center
+    text-offset: 20 0
+    margin-bottom: 5
+    background-color: #500000
+    color: green
+    icon: /images/game/shop/coin
+    icon-align: left
+    icon-offset: 20 2
+
+ShopOfferItem < ShopOffer
+
+  UIItem
+    id: item
+    size: 32 32
+    anchors.top: parent.top
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 10
+    virtual: true
+    phantom: true
+
+ShopOfferCreature < ShopOffer
+
+  UICreature
+    id: creature
+    size: 32 32
+    anchors.top: parent.top
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 8
+    animate: true
+    phantom: true
+
+ShopOfferImage < ShopOffer
+
+  Label
+    id: image
+    size: 52 52
+    anchors.top: parent.top
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 12
+    image-smooth: true
+    image-fixed-ratio: true
+
+MainWindow
+  id: shopWindow
+  !text: tr('Itajai Shop')
+  size: 760 600
+  @onEscape: modules.game_shop.hide()
+  @onClose: modules.game_shop.hide()
+
+  $mobile:
+    size: 500 360
+
+  Panel
+    id: infoPanel
+    size: 210 80
+    anchors.top: parent.top
+    anchors.left: parent.left
+    border: 1 #2a2a2a
+    background-color: #414141
+
+    Label
+      anchors.top: parent.top
+      anchors.horizontalCenter: parent.horizontalCenter
+      margin-top: 8
+      size: 125 30
+      color: green
+      font: eras-16px-bold
+      !text: tr('Your points') .. ":"
+
+    Label
+      id: points
+      anchors.top: prev.bottom
+      anchors.left: parent.left
+      anchors.right: parent.right
+      color: green
+      margin-top: 10
+      text: -
+      text-auto-resize: true
+      text-align: center
+      icon-align: left
+      icon-offset: 48 0
+      icon: /images/game/shop/coin
+      font: eras-16px-bold
+      color: white
+
+  Button
+    id: buyPoints
+    anchors.top: prev.bottom
+    anchors.left: parent.left
+    margin-top: 3
+    !text: tr('Get Points')
+
+  Button
+    anchors.top: prev.top
+    anchors.left: prev.right
+    anchors.right: infoPanel.right
+    margin-left: 3
+    !text: tr('Offer History')
+    @onClick: modules.game_shop.showHistory()
+
+  TextList    
+    id: categories
+    vertical-scrollbar: categoriesScrollBar
+    anchors.top: prev.bottom
+    anchors.left: infoPanel.left
+    anchors.right: infoPanel.right
+    anchors.bottom: parent.bottom
+    margin-top: 4
+    margin-bottom: 10
+    padding: 1
+    focusable: false
+
+  VerticalScrollBar
+    id: categoriesScrollBar
+    anchors.top: categories.top
+    anchors.bottom: categories.bottom
+    anchors.right: categories.right
+    step: 50
+    pixels-scroll: true
+    visible: false
+
+  ScrollablePanel
+    id: offers
+    vertical-scrollbar: offersScrollBar
+    anchors.top: parent.top
+    anchors.left: prev.right
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    margin: 0 0 10 3
+    padding: 5
+    focusable: false
+    border: 1 #6b6b6b
+    background-color: #121212
+    layout:
+      type: grid
+      cell-size: 96 96
+      cell-spacing: 4
+      flow: true
+
+  VerticalScrollBar
+    id: offersScrollBar
+    anchors.top: offers.top
+    anchors.bottom: offers.bottom
+    anchors.right: offers.right
+    margin: 2 0 2 0
+    step: 50
+    pixels-scroll: true
+

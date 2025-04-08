@@ -1,0 +1,16 @@
+HealthInfoWindow
+  id: healthInfoWindow
+  @onClose: modules.game_healthinfo.onMiniWindowClose()
+  &save: true
+  &autoOpen: 2
+  id: background1
+  image-source: /images/ui/tibia_bars
+  size: 2 2
+  image-clip: 0 0 90 11
+  anchors.top: parent.top
+  anchors.left: parent.left
+  id: healthBar
+  image-source: /images/ui/tibia_bars
+  height: 2
+  anchors.top: background1.top
+  anchors.left: background1.left
