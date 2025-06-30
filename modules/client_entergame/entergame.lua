@@ -348,7 +348,7 @@ function EnterGame.init()
   enterGame:getChildById('accountNameTextEdit'):setText(account)
   rememberPasswordBox:setChecked(#account > 0)
     
-  g_keyboard.bindKeyDown('Ctrl+G', EnterGame.openWindow)
+  g_keyboard.bindKeyDown('Ctrl+G', EnterGame.show())
 
   if g_game.isOnline() then
     return EnterGame.hide()

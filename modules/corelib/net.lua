@@ -9,7 +9,7 @@ function translateNetworkError(errcode, connecting, errdesc)
   elseif connecting then
     text = tr('Connection failed.')
   else
-    text = tr('Your connection has been lost.\nEither your network or the server went down.')
+    EnterGame.show()
   end
   text = text .. ' ' .. tr('(ERROR %d)', errcode)
   return text

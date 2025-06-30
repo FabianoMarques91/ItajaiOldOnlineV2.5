@@ -224,7 +224,8 @@ function tryLogout(prompt)
 
   local msg, yesCallback
   if not g_game.isConnectionOk() then
-    msg = 'Your connection is failing, if you logout now your character will be still online, do you want to force logout?'
+    EnterGame.show()
+
 
     yesCallback = function()
       g_game.forceLogout()

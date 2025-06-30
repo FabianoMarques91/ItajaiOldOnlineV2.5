@@ -1,6 +1,6 @@
 -- CONFIG
 APP_NAME = "ItajaiOldOnline"  -- important, change it, it's name for config dir and files in appdata
-APP_VERSION = 1341       -- client version for updater and login to identify outdated client
+APP_VERSION = 7.72       -- client version for updater and login to identify outdated client
 DEFAULT_LAYOUT = "retro" -- on android it's forced to "mobile", check code bellow
 
 -- If you don't use updater or other service, set it to updater = ""
@@ -15,7 +15,7 @@ Services = {
 
 -- Servers accept http login url, websocket login url or ip:port:version
 Servers = {
-  Meuserver = "177.155.199.118:7171:772"
+  Meuserver = "itajai.servegame.com:7171:772"
 }
 
 --Server = "ws://otclient.ovh:3000/"

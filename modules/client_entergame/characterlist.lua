@@ -146,8 +146,9 @@ function onGameUpdateNeeded(signature)
 end
 
 function onGameEnd()
-  scheduleAutoReconnect()
-  CharacterList.showAgain()
+  
+  EnterGame.show()
+
 end
 
 function onLogout()
@@ -172,7 +173,7 @@ function executeAutoReconnect()
     errorBox:destroy()
     errorBox = nil
   end
-  CharacterList.doLogin()
+  EnterGame.show()
 end
 
 -- public functions
@@ -280,7 +281,7 @@ function CharacterList.create(characters, account, otui)
     widget.worldHost = characterInfo.worldIp
     widget.worldPort = characterInfo.worldPort
 
-    connect(widget, { onDoubleClick = function () CharacterList.doLogin() return true end } )
+    connect(widget, { onDoubleClick = function () EnterGame.show() return true end } )
 
     if i == 1 or (g_settings.get('last-used-character') == widget.characterName and g_settings.get('last-used-world') == widget.worldName) then
       focusLabel = widget

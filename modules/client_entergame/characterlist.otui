@@ -107,13 +107,13 @@ StaticMainWindow
     anchors.left: parent.left
     anchors.bottom: parent.bottom
     
-    $!on:
+    $!off:
       image-color: red    
       !text: tr('Auto reconnect: Off')
 
-    $on:
-      !text: tr('Auto reconnect: On')
-      image-color: green
+    $off:
+      !text: tr('Auto reconnect: Off')
+      image-color: red
 
   Button
     id: buttonOk
